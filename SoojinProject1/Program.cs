@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using SoojinProject1.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<SoojinProject1Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SoojinProject1Context") ?? throw new InvalidOperationException("Connection string 'SoojinProject1Context' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
